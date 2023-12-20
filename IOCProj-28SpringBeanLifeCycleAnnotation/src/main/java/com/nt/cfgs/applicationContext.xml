@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:property-placeholder location="com/nt/commons/info.properties"/>
+	<context:component-scan base-package="com.nt.sbeans"></context:component-scan>
+	<bean id="re" class="com.nt.sbeans.Replacer"/>
+	<bean id="check" class="com.nt.sbeans.VotingCheck">
+		<property name="name" value="${per.name}"></property>
+		<property name="age" value="${per.age}"></property>
+		<property name="gender" value="${per.gender}"></property>
+		<replaced-method name="check" replacer="re">
+			<arg-type>String</arg-type>
+			<arg-type>int</arg-type>
+		</replaced-method> 
+	</bean>
+</beans>
